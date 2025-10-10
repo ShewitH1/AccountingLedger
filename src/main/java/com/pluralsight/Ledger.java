@@ -7,7 +7,7 @@ import java.util.Scanner;
 public class Ledger {
 
     //ledger method
-    public void showLedgerMenu(Scanner scanner){
+    public static void showLedgerMenu(Scanner scanner){
         String ledgerMenu = """
                 ------ Ledger ------
                 A) All - display all entries
@@ -18,33 +18,42 @@ public class Ledger {
                 H) Home
             """;
 
-        char command = ' ';
-        while (command != 'H'){
+        String command = " ";
+        while (!command.equalsIgnoreCase("H")){
             System.out.println(ledgerMenu);
             System.out.println("Choose an option: ");
 
-            String input = scanner.nextLine().trim();
+            command = scanner.nextLine().trim();
 
-            //stores in command variable - gets user input - converts to U.C and gets first letter typed
-            command = Character.toUpperCase(input.charAt(0));
-
-            switch (command) {
-                case 'A':
+            switch (command.toUpperCase()) {
+                case "A":
+                case "ALL":
                     System.out.println("display all");
                     break;
-                case 'D':
+
+                case "D":
+                case "DEPOSIT":
+                case "DISPLAY":
                     System.out.println("display deposits");
                     break;
-                case 'P':
+
+                case "P":
+                case "PAYMENT":
+                case "PAYMENTS":
                     System.out.println("display payments");
                     break;
-                case 'R':
+
+                case "R":
+                case "REPORT":
                     System.out.println("display reports");
                     break;
-                case '0':
-                    //ask teacher about this
 
-                case 'H':
+                case "0":
+                    //ask teacher about this
+                    break;
+
+                case "H":
+                case "HOME":
                     System.out.println("Returning to Home...");
                     break;
                 default:

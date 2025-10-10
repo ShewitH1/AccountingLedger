@@ -1,8 +1,6 @@
 package com.pluralsight;
 
 import java.util.Scanner;
-import com.pluralsight.Ledger;
-
 
 public class Main {
     public static void main(String[] args) {
@@ -18,30 +16,35 @@ public class Main {
                  X) Exit
                 """;
 
-        char command = ' ';
-        while (command != 'X') {
+        String command = " ";
+        while (!command.equalsIgnoreCase("X")) {
             System.out.print(mainMenu);
             System.out.println("Choose an option: ");
 
-            String input = scanner.nextLine().trim(); //adding trim to remove whitespaces
-
-            //getting it do convert a single 'char' to its uppercase version
-            command = Character.toUpperCase(input.charAt(0));
+            command = scanner.nextLine().trim(); //adding trim to remove whitespaces
 
             //switch - case state: user picks options and display's desired output
-            switch (command) {
-                case 'D':
+            switch (command.toUpperCase()) {
+                case "D":
+                case "DEPOSIT":
+                case "DEPOSITS":
                     System.out.println("Add Deposit selected.");
                     break;
-                case 'P':
+
+                case "P":
+                case "PAYMENT":
+                case "PAYMENTS":
                     System.out.println("Make Payment selected.");
                     break;
-                case 'L':
+
+                case "L":
+                case "LEDGER":
                     //ledger object - use variable to call ledger menu method
-                    Ledger ledger = new Ledger();
-                    ledger.showLedgerMenu(scanner);
+                    Ledger.showLedgerMenu(scanner);
                     break;
-                case 'X':
+
+                case "X":
+                case "EXIT":
                     System.out.println("Exiting program...");
                     System.exit(0);
                     break;
