@@ -43,6 +43,7 @@ public class Main {
                     break;
                 case 'X':
                     System.out.println("Exiting program...");
+                    System.exit(0);
                     break;
                 default:
                     System.out.println("Invalid choice. Try again.");
