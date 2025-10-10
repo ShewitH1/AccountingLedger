@@ -21,7 +21,7 @@ public class Main {
             System.out.print(mainMenu);
             System.out.println("Choose an option: ");
 
-            String input = scanner.nextLine().trim();
+            String input = scanner.nextLine().trim(); //adding trim to remove whitespaces
 
             //getting it do convert a single 'char' to its uppercase version
             command = Character.toUpperCase(input.charAt(0));
