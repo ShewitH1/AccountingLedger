@@ -6,7 +6,7 @@ public class Reports {
 
     public static void showReportsMenu(Scanner scanner){
         String ledgerMenu = """
-                ------ Ledger ------
+                ------ Reports ------
                 1) Month to Date
                 2) Previous Month
                 3) Year To Date
