@@ -219,8 +219,8 @@ public class Ledger {
         for(Transaction payment : dummy_arrayList){
             if(payment.getAmount() < 0){
                 System.out.println(payment);
-                totalPayments+=payment.getAmount();
-                count++;
+                totalPayments+=payment.getAmount(); //then add payment amount to variable
+                count++;    //increment count of added payments
             }
         }
 
