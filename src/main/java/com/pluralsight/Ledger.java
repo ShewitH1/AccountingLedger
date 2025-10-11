@@ -36,6 +36,7 @@ public class Ledger {
                 case "ALL":
                     System.out.println("display all");
                     System.out.println();
+
                     displayEntries();
                     break;
 
@@ -44,6 +45,7 @@ public class Ledger {
                 case "DISPLAY":
                     System.out.println("display deposits");
                     System.out.println();
+
                     displayDepositEntries();
                     break;
 
@@ -51,11 +53,15 @@ public class Ledger {
                 case "PAYMENT":
                 case "PAYMENTS":
                     System.out.println("display payments");
+                    System.out.println();
+
+                    displayPaymentsEntries();
                     break;
 
                 case "R":
                 case "REPORT":
                     System.out.println("display reports");
+
                     Reports.showReportsMenu(scanner);
                     break;
 
@@ -197,8 +203,33 @@ public class Ledger {
             System.out.println("No deposits were found");
         }
         else{
+            //possible make it have a '+' beside it
             System.out.printf("Number of deposits: %d | Total Deposits: $%.2f%n", count, totalDeposits);
         }
 
+    }
+
+
+    //display deposits
+    public static void displayPaymentsEntries(){
+        double totalPayments = 0;
+        int count = 0;
+
+        //loop thru array - amount < 0 - print and add amount/counter
+        for(Transaction payment : dummy_arrayList){
+            if(payment.getAmount() < 0){
+                System.out.println(payment);
+                totalPayments+=payment.getAmount();
+                count++;
+            }
+        }
+
+        if (count == 0){
+            System.out.println("No payments were found");
+        }
+        else{
+            //possible make it have a '-' beside it
+            System.out.printf("Number of deposits: %d | Total Deposits: $%.2f%n", count, totalPayments);
+        }
     }
 }

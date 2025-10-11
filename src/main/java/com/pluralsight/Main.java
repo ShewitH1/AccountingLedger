@@ -1,5 +1,7 @@
 package com.pluralsight;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 import java.util.Scanner;
 
 public class Main {
@@ -39,7 +41,7 @@ public class Main {
 
                 case "L":
                 case "LEDGER":
-                    //ledger object - use variable to call ledger menu method
+                    //static method being called
                     Ledger.showLedgerMenu(scanner);
                     break;
 
@@ -55,5 +57,23 @@ public class Main {
 
         //closes the scanner automatically
         scanner.close();
+    }
+
+    public void addDeposit(Scanner scanner){
+
+        try {
+            //create FileWriter
+            FileWriter fileWriter = new FileWriter("transactions.csv");
+            BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+
+
+
+
+
+
+
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 }

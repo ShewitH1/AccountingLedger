@@ -24,6 +24,7 @@ public class Reports {
             String input = scanner.nextLine().trim();
 
             try{
+                //trying to convert 'string' input into an int
                 command = Integer.parseInt(input);
             } catch (Exception e){
                 System.out.println("Invalid input, please enter a number!");
