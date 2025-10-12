@@ -93,7 +93,7 @@ public class Ledger {
             while((line = bufferedReader.readLine()) != null){
 
                 //split and store into variables
-                String[] line_part = line.split("\\|");
+                String[] line_part = line.trim().split("\\|");
 
                 LocalDate date = LocalDate.parse(line_part[0]);
                 LocalTime time = LocalTime.parse(line_part[1]);
@@ -141,7 +141,7 @@ public class Ledger {
         for(int i = 0; i<real_arrayList.size(); i++){
             Transaction transaction = real_arrayList.get(i);
             if(transaction.getAmount() > 0){
-                System.out.println(transaction);
+                System.out.println(transaction.toEncodedString());
                 totalDeposits += transaction.getAmount(); //then add deposit amount to variable
                 count++; //increment count of added deposit
             }
