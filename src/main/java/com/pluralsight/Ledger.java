@@ -10,7 +10,6 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Ledger {
-    public static ArrayList<Transaction> dummy_arrayList = getInventory();
     public static ArrayList<Transaction> real_arrayList = getFromCSVFile();
 
     //ledger method
@@ -68,6 +67,7 @@ public class Ledger {
                 case "H":
                 case "HOME":
                     System.out.println("Returning to Home...");
+
                     break;
                 default:
                     System.out.println("Invalid choice. Try again.");
@@ -86,6 +86,7 @@ public class Ledger {
             //create file reader
             FileReader fileReader = new FileReader("transactions.csv");
             BufferedReader bufferedReader = new BufferedReader(fileReader);
+            bufferedReader.readLine();
 
             //read through file - line by line
             String line;
@@ -119,62 +120,6 @@ public class Ledger {
         return arrayList;
     }
 
-    //entries - dummy data
-    public static ArrayList<Transaction> getInventory() {
-        ArrayList<Transaction> entries = new ArrayList<>();
-
-        Transaction t1 = new Transaction(
-                LocalDate.of(2025, 10, 1),
-                LocalTime.of(9, 30),
-                "Office Supplies Purchase",
-                "Staples",
-                -45.67
-        );
-
-        entries.add(t1);
-
-        Transaction t2 = new Transaction(
-                LocalDate.of(2025, 10, 3),
-                LocalTime.of(14, 15),
-                "Client Payment",
-                "Acme Corp",
-                1500.00
-        );
-
-        entries.add(t2);
-
-        Transaction t3 = new Transaction(
-                LocalDate.of(2025, 10, 5),
-                LocalTime.of(10, 45),
-                "Coffee for Team Meeting",
-                "Starbucks",
-                18.25
-        );
-
-        entries.add(t3);
-
-        Transaction t4 = new Transaction(
-                LocalDate.of(2025, 10, 8),
-                LocalTime.of(16, 20),
-                "Website Maintenance",
-                "TechFix Ltd",
-                -250.00
-        );
-
-        entries.add(t4);
-
-        Transaction t5 = new Transaction(
-                LocalDate.of(2025, 10, 9),
-                LocalTime.of(11, 5),
-                "Monthly Subscription",
-                "Adobe",
-                -29.99
-        );
-        entries.add(t5);
-
-        return entries;
-
-    }
 
     //display all entries
     public static void displayEntries(){
@@ -186,12 +131,15 @@ public class Ledger {
 
     //display deposits
     public static void displayDepositEntries(){
+
+        real_arrayList = getFromCSVFile(); //reloads arraylist everytime user adds
+
         double totalDeposits = 0;
         int count = 0;
 
         //loop thru arraylist - see if amount is greater than 0 - print
-        for(int i = 0; i<dummy_arrayList.size(); i++){
-            Transaction transaction = dummy_arrayList.get(i);
+        for(int i = 0; i<real_arrayList.size(); i++){
+            Transaction transaction = real_arrayList.get(i);
             if(transaction.getAmount() > 0){
                 System.out.println(transaction);
                 totalDeposits += transaction.getAmount(); //then add deposit amount to variable
@@ -216,7 +164,7 @@ public class Ledger {
         int count = 0;
 
         //loop thru array - amount < 0 - print and add amount/counter
-        for(Transaction payment : dummy_arrayList){
+        for(Transaction payment : real_arrayList){
             if(payment.getAmount() < 0){
                 System.out.println(payment);
                 totalPayments+=payment.getAmount(); //then add payment amount to variable
@@ -229,7 +177,7 @@ public class Ledger {
         }
         else{
             //possible make it have a '-' beside it
-            System.out.printf("Number of deposits: %d | Total Deposits: $%.2f%n", count, totalPayments);
+            System.out.printf("Number of payments: %d | Total Payments: $%.2f%n", count, totalPayments);
         }
     }
 }

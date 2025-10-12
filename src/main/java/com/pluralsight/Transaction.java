@@ -67,7 +67,7 @@ public class Transaction {
     }
 
     public String toEncodedString(){
-        return date + "|" + time + "|" + description + vendor + "|" + amount;
+        return date + "|" + time + "|" + description + "|" + vendor + "|" + amount;
     }
 }
 
