@@ -1,5 +1,8 @@
 package com.pluralsight;
 
+import java.lang.reflect.Array;
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Reports {
@@ -18,39 +21,32 @@ public class Reports {
         int command = -1;
         while (command != 0){
             System.out.println(ledgerMenu);
-//            System.out.println("Choose an option: ");
             command = ConsoleHelper.promptForInt("Choose an option: ");
-
-            //get the user input and convert to int
-//            String input = scanner.nextLine().trim();
-//
-//            try{
-//                //trying to convert 'string' input into an int
-//                command = Integer.parseInt(input);
-//            } catch (Exception e){
-//                System.out.println("Invalid input, please enter a number!");
-//                continue;
-//            }
 
             switch (command) {
                 case 1:
                     System.out.println("Month to date");
+
                     break;
 
                 case 2:
                     System.out.println("previous month");
+
                     break;
 
                 case 3:
                     System.out.println("year to date");
+
                     break;
 
                 case 4:
                     System.out.println("previous year");
+
+
                     break;
 
                 case 5:
-                    System.out.println("search by vendor");
+                    searchByVendor();
                     break;
 
                 case 0:
@@ -64,4 +60,35 @@ public class Reports {
 
         }
     }
-}
+
+    //search by vendor
+    public static void searchByVendor(){
+        String vendor_name = ConsoleHelper.promptForString("Enter the vendor name for search: ");
+
+        for(int i = 0; i<Ledger.real_arrayList.size(); i++){
+            Transaction transaction = Ledger.real_arrayList.get(i);
+            if(transaction.getVendor().equalsIgnoreCase(vendor_name)){
+                System.out.println(transaction.toEncodedString());
+            }
+        }
+
+    }
+
+
+    //got from lecture - pretty useful!
+    /* these methods will help get specific dates for the rest of case 1-5 methods */
+    public static boolean isWithinRange(LocalDate date, LocalDate start, LocalDate end) {
+        return (date.isEqual(start) || date.isAfter(start)) &&
+                (date.isEqual(end)   || date.isBefore(end));
+        }
+    }
+
+
+
+
+
+
+
+
+
+
