@@ -15,6 +15,7 @@ public class Reports {
                 3) Year To Date
                 4) Previous Year
                 5) Search by Vendor
+                6) Custom Search
                 0) Back
             """;
 
@@ -49,6 +50,10 @@ public class Reports {
                     searchByVendor();
                     break;
 
+                case 6:
+                    customSearch();
+                    break;
+
                 case 0:
                     System.out.println("Back to ledge page...");
                     Ledger.showLedgerMenu(scanner);
@@ -71,6 +76,63 @@ public class Reports {
                 System.out.println(transaction.toEncodedString());
             }
         }
+    }
+
+
+    public static void customSearch(){
+        LocalDate start_date = ConsoleHelper.promptForLocalDateCustomSearch("Enter the start date (or press S to skip): ");
+        LocalDate end_date = ConsoleHelper.promptForLocalDateCustomSearch("Enter the end date (or press S to skip): ");
+        String description = ConsoleHelper.promptForStringCustomSearch("Enter the description (or press S to skip)");
+        String vendor = ConsoleHelper.promptForStringCustomSearch("Enter the vendor (or press S to skip)");
+        Double amount = ConsoleHelper.promptForDoubleCustomSearch("Enter the amount (or press S to skip)");
+
+        ArrayList<Transaction> results_arraylist = new ArrayList<>();
+
+        for(Transaction trans : Ledger.real_arrayList){
+            if(start_date != null){
+                if(trans.getDate().isBefore(start_date)){
+                    //Basically this will skip transaction
+                    continue;
+                }
+            }
+            if (end_date!= null){
+                if(trans.getDate().isAfter(end_date)){
+                    continue;
+                }
+            }
+
+            if (description != null){
+                if(!trans.getDescription().toLowerCase().contains(description.toLowerCase())){
+                    continue;
+                }
+            }
+
+            if (vendor != null){
+                if(!trans.getVendor().toLowerCase().contains(vendor.toLowerCase())){
+                    continue;
+                }
+            }
+
+            if(amount != null){
+                if(trans.getAmount() != amount){
+                    continue;
+                }
+            }
+
+            results_arraylist.add(trans);
+        }
+
+        //here is a confirmation logic
+        if(results_arraylist.isEmpty()){
+            System.out.println("Empty, no transactions match your pickings");
+        }
+        else{
+            System.out.println("Here are your matching transactions: ");
+            for (Transaction transaction : results_arraylist){
+                System.out.println(transaction.toEncodedString());
+            }
+        }
+
 
     }
 

@@ -30,6 +30,53 @@ public class ConsoleHelper {
         return date;
     }
 
+    //console helper for the custom search function
+    public static LocalDate promptForLocalDateCustomSearch(String prompt){
+        System.out.println(prompt);
+        String input = scanner.nextLine().trim();
+
+        //basically if user pressed enter, return null - meaning skip it
+        if(input.isEmpty() || input.equalsIgnoreCase("S")){
+            return null;
+        }
+
+        try{
+            return  LocalDate.parse(input);
+        } catch (Exception e){
+            System.out.println("Invalid date format. Please enter in YYYY-MM-DD format");
+            return promptForLocalDateCustomSearch(prompt);
+        }
+    }
+
+    public static String promptForStringCustomSearch(String prompt){
+        System.out.println(prompt + ":");
+        String input = scanner.nextLine().trim();
+
+        if (input.isEmpty() || input.equalsIgnoreCase("S")){
+            return null;
+        }
+        else{
+            return input;
+        }
+    }
+
+    public static Double promptForDoubleCustomSearch(String prompt){
+        System.out.println(prompt + ":");
+        String input = scanner.nextLine().trim();
+
+        //lets skip the filtering amount
+        if(input.isEmpty() || input.equalsIgnoreCase("S")){
+            return null;
+        }
+
+        try{
+            return Double.parseDouble(input);
+        } catch(Exception e){
+            System.out.println("Invalid Entry, please enter a double number");
+            return promptForDoubleCustomSearch(prompt); //this will restart and let you try again
+        }
+    }
+
 
     public static LocalTime promptForLocalTime(String prompt){
         LocalTime time = null;
