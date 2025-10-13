@@ -27,9 +27,8 @@ public class Main {
         String command = " ";
         while (!command.equalsIgnoreCase("X")) {
             System.out.print(mainMenu);
-            System.out.println("Choose an option: ");
 
-            command = scanner.nextLine().trim(); //adding trim to remove whitespaces
+            command = ConsoleHelper.promptForString("Choose an option: ");
 
             //switch - case state: user picks options and display's desired output
             switch (command.toUpperCase()) {
@@ -37,10 +36,8 @@ public class Main {
                 case "DEPOSIT":
                 case "DEPOSITS":
                     System.out.println("Add Deposit selected.");
-                    //All();
 
-                    addDeposit(scanner);
-
+                    addDeposit();
                     break;
 
                 case "P":
@@ -48,7 +45,7 @@ public class Main {
                 case "PAYMENTS":
                     System.out.println("Make Payment selected.");
 
-                    addPayment(scanner);
+                    addPayment();
                     break;
 
                 case "L":
@@ -72,24 +69,13 @@ public class Main {
     }
 
 
-
-    public static void addPayment(Scanner scanner){
+    public static void addPayment(){
         //add some validation to user if user adds invalid date structure
-        System.out.println("Enter the date: ");
-        LocalDate date = LocalDate.parse(scanner.nextLine()); //converting date into local date
-
-        System.out.println("Enter the time: ");
-        LocalTime time = LocalTime.parse(scanner.nextLine()); //converting time into local time
-
-        System.out.println("Enter the description: ");
-        String item_description = scanner.nextLine().trim();
-
-        System.out.println("Enter the vendor: ");
-        String vendor = scanner.nextLine().trim();
-
-        System.out.println("Enter the amount: ");
-        double amount = scanner.nextDouble();
-        scanner.nextLine();
+        LocalDate date = ConsoleHelper.promptForLocalDate("Enter the date");
+        LocalTime time = ConsoleHelper.promptForLocalTime("Enter the time");
+        String item_description = ConsoleHelper.promptForString("Enter the description: ");
+        String vendor = ConsoleHelper.promptForString("Enter the vendor: ");
+        double amount = ConsoleHelper.promptForDouble("Enter the amount: ");
 
         try {
             //makes amount into a negative
@@ -124,26 +110,14 @@ public class Main {
 
     }
 
-    public static void addDeposit(Scanner scanner){
+    public static void addDeposit(){
 
-        //add some validation to user if user adds invalid date structure
-        //user input
-        System.out.println("Enter the date: ");
-        LocalDate date = LocalDate.parse(scanner.nextLine()); //converting date into local date
-
-        System.out.println("Enter the time: ");
-        LocalTime time = LocalTime.parse(scanner.nextLine()); //converting time into local time
-
-        System.out.println("Enter the description: ");
-        String item_description = scanner.nextLine().trim();
-
-        System.out.println("Enter the vendor: ");
-        String vendor = scanner.nextLine().trim();
-
-        System.out.println("Enter the amount: ");
-        double amount = scanner.nextDouble();
-        scanner.nextLine();
-
+        //user input - add some validation to user if user adds invalid date structure
+        LocalDate date = ConsoleHelper.promptForLocalDate("Enter the date");
+        LocalTime time = ConsoleHelper.promptForLocalTime("Enter the time");
+        String item_description = ConsoleHelper.promptForString("Enter the description: ");
+        String vendor = ConsoleHelper.promptForString("Enter the vendor: ");
+        double amount = ConsoleHelper.promptForDouble("Enter the amount: ");
 
         try {
             //create FileWriter
@@ -155,7 +129,6 @@ public class Main {
 
             //add to arraylist
             //real_arrayList2.add(deposit_transaction);
-
             Ledger.real_arrayList.add(deposit_transaction);
 
             //writing to the csv file
@@ -169,7 +142,6 @@ public class Main {
             //added this for confirmation of deposit
             System.out.println("Your Deposit has been added successfully! Deposit amount: " + amount + " to " + vendor +
                     " on " + date + " at " + time);
-
 
         } catch (Exception e) {
             System.out.println("Error - your deposit has not been added. Please try again!");

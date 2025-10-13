@@ -26,14 +26,13 @@ public class Ledger {
         String command = " ";
         while (!command.equalsIgnoreCase("H")) {
             System.out.println(ledgerMenu);
-            System.out.println("Choose an option: ");
 
-            command = scanner.nextLine().trim();
+            command = ConsoleHelper.promptForString("Choose an option: ");
 
             switch (command.toUpperCase()) {
                 case "A":
                 case "ALL":
-                    System.out.println("display all");
+                    System.out.println("Display all");
                     System.out.println();
 
                     displayEntries();
@@ -42,7 +41,7 @@ public class Ledger {
                 case "D":
                 case "DEPOSIT":
                 case "DISPLAY":
-                    System.out.println("display deposits");
+                    System.out.println("Display deposits");
                     System.out.println();
 
                     displayDepositEntries();
@@ -51,7 +50,7 @@ public class Ledger {
                 case "P":
                 case "PAYMENT":
                 case "PAYMENTS":
-                    System.out.println("display payments");
+                    System.out.println("Display payments");
                     System.out.println();
 
                     displayPaymentsEntries();
@@ -59,7 +58,7 @@ public class Ledger {
 
                 case "R":
                 case "REPORT":
-                    System.out.println("display reports");
+                    System.out.println("Display reports");
 
                     Reports.showReportsMenu(scanner);
                     break;
@@ -80,7 +79,6 @@ public class Ledger {
     public static ArrayList<Transaction> getFromCSVFile(){
         //create an array list
         ArrayList<Transaction> arrayList = new ArrayList<>();
-
 
         try {
             //create file reader

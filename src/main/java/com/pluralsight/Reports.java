@@ -18,18 +18,19 @@ public class Reports {
         int command = -1;
         while (command != 0){
             System.out.println(ledgerMenu);
-            System.out.println("Choose an option: ");
+//            System.out.println("Choose an option: ");
+            command = ConsoleHelper.promptForInt("Choose an option: ");
 
             //get the user input and convert to int
-            String input = scanner.nextLine().trim();
-
-            try{
-                //trying to convert 'string' input into an int
-                command = Integer.parseInt(input);
-            } catch (Exception e){
-                System.out.println("Invalid input, please enter a number!");
-                continue;
-            }
+//            String input = scanner.nextLine().trim();
+//
+//            try{
+//                //trying to convert 'string' input into an int
+//                command = Integer.parseInt(input);
+//            } catch (Exception e){
+//                System.out.println("Invalid input, please enter a number!");
+//                continue;
+//            }
 
             switch (command) {
                 case 1:
