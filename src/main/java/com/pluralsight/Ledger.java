@@ -9,6 +9,9 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * Ledger Menu Options and supporting methods
+ */
 public class Ledger {
     public static ArrayList<Transaction> real_arrayList = getFromCSVFile();
 

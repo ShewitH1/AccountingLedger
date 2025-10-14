@@ -35,15 +35,6 @@ public class Main {
         }
 
 
-        //for easier and cleaner display instead of multiple 'print' statements
-//        String mainMenu = """
-//                ------ Home Screen ------
-//                 D) Add Deposit
-//                 P) Make Payment (Debit)
-//                 L) Ledger
-//                 X) Exit
-//                """;
-
         String mainMenu = """
                 ------ Home Screen ------
                  D) Add Coffee Sale
@@ -114,6 +105,7 @@ public class Main {
 
         try {
             //makes amount into a negative
+            //make sure to store any payment as a negative
             amount = -Math.abs(amount);
 
             //create FileWriter
@@ -145,6 +137,53 @@ public class Main {
 
     }
 
+    public static void addPaymentMatt(){
+        //get the data from the user
+        LocalDate date = ConsoleHelper.promptForLocalDate("Enter the date of Purchase");
+        LocalTime time = ConsoleHelper.promptForLocalTime("Enter the time of Purchase");
+        String item_description = ConsoleHelper.promptForString("Item Purchased - Milk, Beans, Chocolate, etc: ");
+        String vendor_supplier = ConsoleHelper.promptForString("Vendor/Supplier name: ");
+        double amount = ConsoleHelper.promptForDouble("Total Purchase amount: ");
+
+
+        //create the transaction
+
+        //make sure to store any payment as a negative
+        amount = -Math.abs(amount);
+        //creating transaction object and store variables in object
+        Transaction payment_transaction = new Transaction(date, time, item_description, vendor_supplier, amount);
+
+        //add it to the arraylist
+        Ledger.real_arrayList.add(payment_transaction);
+
+        //save new transaction to file
+
+        try {
+
+            //create FileWriter
+            FileWriter fileWriter = new FileWriter("transactions.csv", true);
+            BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+
+            //writing to the csv file
+            bufferedWriter.write(date + "|" + time + "|" + item_description + "|" + vendor_supplier + "|" + amount);
+            bufferedWriter.newLine();
+
+            //closing buffer and file
+            bufferedWriter.close();
+            fileWriter.close();
+
+            //added this for confirmation of deposit
+            System.out.println("Your Payment has been added successfully! Payment amount: " + amount + " to " + vendor_supplier +
+                    " on " + date + " at " + time);
+
+
+        } catch (Exception e) {
+            System.out.println("Error - your payment has not been added. Please try again!");
+        }
+
+    }
+
+
     public static void addDeposit(){
 
         //user input - add some validation to user if user adds invalid date structure
@@ -169,7 +208,6 @@ public class Main {
             Transaction deposit_transaction = new Transaction(date, time, item_description, vendor_customer, amount);
 
             //add to arraylist
-            //real_arrayList2.add(deposit_transaction);
             Ledger.real_arrayList.add(deposit_transaction);
 
             //writing to the csv file

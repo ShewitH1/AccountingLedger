@@ -26,27 +26,28 @@ public class Reports {
 
             switch (command) {
                 case 1:
-                    System.out.println("Month to date");
-
+                    System.out.println("Month to date:");
+                    monthToDate();
                     break;
 
                 case 2:
-                    System.out.println("previous month");
-
+                    System.out.println("Previous Month:");
+                    PreviousMonth();
                     break;
 
                 case 3:
-                    System.out.println("year to date");
+                    System.out.println("Year To Date:");
+                    yearToDate();
 
                     break;
 
                 case 4:
-                    System.out.println("previous year");
-
-
+                    System.out.println("Previous Year:");
+                    previousYear();
                     break;
 
                 case 5:
+
                     searchByVendor();
                     break;
 
@@ -86,7 +87,9 @@ public class Reports {
         String vendor = ConsoleHelper.promptForStringCustomSearch("Enter the vendor (or press S to skip)");
         Double amount = ConsoleHelper.promptForDoubleCustomSearch("Enter the amount (or press S to skip)");
 
+
         ArrayList<Transaction> results_arraylist = new ArrayList<>();
+
 
         for(Transaction trans : Ledger.real_arrayList){
             if(start_date != null){
@@ -101,11 +104,13 @@ public class Reports {
                 }
             }
 
+
             if (description != null){
                 if(!trans.getDescription().toLowerCase().contains(description.toLowerCase())){
                     continue;
                 }
             }
+
 
             if (vendor != null){
                 if(!trans.getVendor().toLowerCase().contains(vendor.toLowerCase())){
@@ -113,14 +118,17 @@ public class Reports {
                 }
             }
 
+
             if(amount != null){
                 if(trans.getAmount() != amount){
                     continue;
                 }
             }
 
+
             results_arraylist.add(trans);
         }
+
 
         //here is a confirmation logic
         if(results_arraylist.isEmpty()){
@@ -134,7 +142,11 @@ public class Reports {
         }
 
 
+
+
     }
+
+
 
 
     //got from lecture - pretty useful!
@@ -143,8 +155,81 @@ public class Reports {
         return (date.isEqual(start) || date.isAfter(start)) &&
                 (date.isEqual(end)   || date.isBefore(end));
         }
+
+
+    public static void displayInRange(LocalDate start, LocalDate end, String dateReportName){
+        ArrayList<Transaction> date = new ArrayList<>();
+
+        for(Transaction trans : Ledger.real_arrayList){
+            if(isWithinRange(trans.getDate(), start, end)){
+                date.add(trans);
+            }
+        }
+
+        if(date.isEmpty()){
+            System.out.println("There are no transactions found for this date/time.");
+        }
+        else{
+            System.out.println("Here are the Specific dates: ");
+            for(int i = 0; i < date.size(); i++){
+                Transaction trans_AL = date.get(i);
+                System.out.println(trans_AL.toEncodedString());
+            }
+        }
+
     }
 
+    //case 1
+    public static void monthToDate(){
+        LocalDate today = LocalDate.now();
+
+        //LocalDate startmonth = today.withDayOfMonth(1);
+
+        LocalDate firstDayOfMonth = LocalDate.of(today.getYear(), today.getMonth(), 1);
+
+        displayInRange(firstDayOfMonth,today,"Month to Date");
+
+    }
+
+    //case 2
+    public static void PreviousMonth(){
+        LocalDate today = LocalDate.now();
+
+        LocalDate firstDayOfPrevMonth = LocalDate.of(today.minusMonths(1).getYear(),
+                today.minusMonths(1).getMonth(), 1);
+
+        LocalDate lastDayOfPreviousMonth = firstDayOfPrevMonth.withDayOfMonth(firstDayOfPrevMonth.lengthOfMonth());
+
+
+        displayInRange(firstDayOfPrevMonth, lastDayOfPreviousMonth, "Previous Month");
+
+    }
+
+
+    //case 3
+    public static void yearToDate(){
+        LocalDate today = LocalDate.now();
+
+        //this gives the start of the current year
+        LocalDate firstDayOfYear = LocalDate.of(today.getYear(), 1, 1);
+
+        displayInRange(firstDayOfYear, today, "Year to Date");
+    }
+
+    //case 4
+    public static void previousYear(){
+        LocalDate today = LocalDate.now();
+
+        //this gives the start(first day) of the previous year
+        LocalDate firstDayOfPreviousYear = LocalDate.of(today.getYear()-1, 1, 1);
+
+        //this gives the last day of the previous year
+        LocalDate lastDayOfPreviousYear = LocalDate.of(today.getYear()-1, 12, 31);
+
+        displayInRange(firstDayOfPreviousYear, lastDayOfPreviousYear, "Previous Year");
+
+    }
+}
 
 
 
