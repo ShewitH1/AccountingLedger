@@ -104,10 +104,21 @@ public class Reports {
                 }
             }
 
+            if(description != null){
+                if (!transaction.getDescription().toLowerCase().contains(description.toLowerCase())){
+                    continue;
+                }
+            }
+
+            if(amount != null){
+                if(transaction.getAmount() != amount){
+                    continue;
+                }
+            }
+
+            results_arraylist.add(transaction);
+
         }
-
-
-
 
         //here is a confirmation logic
         if(results_arraylist.isEmpty()){
@@ -119,9 +130,6 @@ public class Reports {
                 System.out.println(transaction.toEncodedString());
             }
         }
-
-
-
 
     }
 
