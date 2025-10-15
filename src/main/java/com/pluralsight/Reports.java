@@ -110,6 +110,12 @@ public class Reports {
                 }
             }
 
+            if (vendor != null){
+                if(!transaction.getVendor().toLowerCase().contains(vendor.toLowerCase())){
+                    continue;
+                }
+            }
+
             if(amount != null){
                 if(transaction.getAmount() != amount){
                     continue;
