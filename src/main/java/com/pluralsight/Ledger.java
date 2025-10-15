@@ -33,23 +33,24 @@ public class Ledger {
             command = ConsoleHelper.promptForString("Choose an option: ");
 
             switch (command.toUpperCase()) {
+                //Display all transactions - Payments and deposits
                 case "A":
                 case "ALL":
                     System.out.println("Display all");
                     System.out.println();
-
                     displayEntries();
                     break;
 
+                //Display only deposits (sales)
                 case "D":
                 case "DEPOSIT":
                 case "DISPLAY":
                     System.out.println("Display deposits");
                     System.out.println();
-
                     displayDepositEntries();
                     break;
 
+                //Display only payment transactions - going out
                 case "P":
                 case "PAYMENT":
                 case "PAYMENTS":
@@ -59,6 +60,7 @@ public class Ledger {
                     displayPaymentsEntries();
                     break;
 
+                //Open the Report menu screen
                 case "R":
                 case "REPORT":
                     System.out.println("Display reports");
@@ -66,6 +68,7 @@ public class Ledger {
                     Reports.showReportsMenu(scanner);
                     break;
 
+                //Goes back to the Main Menu screen
                 case "H":
                 case "HOME":
                     System.out.println("Returning to Home...");
@@ -80,11 +83,11 @@ public class Ledger {
 
 
     public static ArrayList<Transaction> getFromCSVFile(){
-        //create an array list
+
         ArrayList<Transaction> arrayList = new ArrayList<>();
 
         try {
-            //create file reader
+            //Make sure to read data from CSV file
             FileReader fileReader = new FileReader("transactions.csv");
             BufferedReader bufferedReader = new BufferedReader(fileReader);
             bufferedReader.readLine();
@@ -102,14 +105,11 @@ public class Ledger {
                 String vendor = line_part[3];
                 double amount = Double.parseDouble(line_part[4]);
 
-                //create object and store variables
                 Transaction transaction_object = new Transaction(date, time, description, vendor, amount);
 
-                //add to arraylist
                 arrayList.add(transaction_object);
             }
 
-            //close both readers
             bufferedReader.close();
             fileReader.close();
 
@@ -122,23 +122,22 @@ public class Ledger {
     }
 
 
-    //display all entries
+    //display all entries - both transactions and payments
     public static void displayEntries(){
-        //loop thru arraylist and print
         for(Transaction list : real_arrayList){
             System.out.println(list.toEncodedString());
         }
     }
 
-    //display deposits
+    //display only deposits - sales in coffee shop(JAVA BREW)
     public static void displayDepositEntries(){
 
-        real_arrayList = getFromCSVFile(); //reloads arraylist everytime user adds
+        //Make sure to reload arraylist everytime user adds
+        real_arrayList = getFromCSVFile();
 
         double totalDeposits = 0;
         int count = 0;
 
-        //loop thru arraylist - see if amount is greater than 0 - print
         for(int i = 0; i<real_arrayList.size(); i++){
             Transaction transaction = real_arrayList.get(i);
             if(transaction.getAmount() > 0){
@@ -147,19 +146,19 @@ public class Ledger {
                 count++; //increment count of added deposit
             }
         }
-        //if - else: sees if there is deposits made - if so it will print the amount and number of deposit
+
+        //confirmation message
         if (count == 0){
             System.out.println("No deposits were found");
         }
         else{
-            //possible make it have a '+' beside it
             System.out.printf("Number of deposits: %d | Total Deposits: $%.2f%n", count, totalDeposits);
         }
 
     }
 
 
-    //display deposits
+    //Only display payments
     public static void displayPaymentsEntries(){
         double totalPayments = 0;
         int count = 0;
@@ -177,7 +176,6 @@ public class Ledger {
             System.out.println("No payments were found");
         }
         else{
-            //possible make it have a '-' beside it
             System.out.printf("Number of payments: %d | Total Payments: $%.2f%n", count, totalPayments);
         }
     }

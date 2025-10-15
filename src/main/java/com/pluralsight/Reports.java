@@ -25,36 +25,42 @@ public class Reports {
             command = ConsoleHelper.promptForInt("Choose an option: ");
 
             switch (command) {
+                //Displays the Month to Date filter
                 case 1:
                     System.out.println("Month to date:");
                     monthToDate();
                     break;
 
+                //Displays the Previous Month filter
                 case 2:
                     System.out.println("Previous Month:");
                     PreviousMonth();
                     break;
 
+                //Displays the Year to Date filter
                 case 3:
                     System.out.println("Year To Date:");
                     yearToDate();
 
                     break;
 
+                //Displays the Previous Year filter
                 case 4:
                     System.out.println("Previous Year:");
                     previousYear();
                     break;
 
+                //Displays the Search by vendor filter
                 case 5:
-
                     searchByVendor();
                     break;
 
+                //Displays the Search by vendor filter
                 case 6:
                     customSearch();
                     break;
 
+                //Goes back to the Ledger Screen Menu display
                 case 0:
                     System.out.println("Back to ledge page...");
                     Ledger.showLedgerMenu(scanner);
@@ -67,7 +73,7 @@ public class Reports {
         }
     }
 
-    //search by vendor
+    //Case 5 - Displays search by vendor filter
     public static void searchByVendor(){
         String vendor_name = ConsoleHelper.promptForString("Enter the vendor name for search: ");
 
@@ -80,6 +86,7 @@ public class Reports {
     }
 
 
+    //Case 6 - Displays custom search filter
     public static void customSearch(){
         LocalDate start_date = ConsoleHelper.promptForLocalDateCustomSearch("Enter the start date (or press S to skip): ");
         LocalDate end_date = ConsoleHelper.promptForLocalDateCustomSearch("Enter the end date (or press S to skip): ");
@@ -126,7 +133,7 @@ public class Reports {
 
         }
 
-        //here is a confirmation logic
+        //confirmation logic
         if(results_arraylist.isEmpty()){
             System.out.println("Empty, no transactions match your pickings");
         }
@@ -142,7 +149,6 @@ public class Reports {
 
 
 
-    //got from lecture - pretty useful!
     /* these methods will help get specific dates for the rest of case 1-5 methods */
     public static boolean isWithinRange(LocalDate date, LocalDate start, LocalDate end) {
         return (date.isEqual(start) || date.isAfter(start)) &&
@@ -172,11 +178,9 @@ public class Reports {
 
     }
 
-    //case 1
+    //case 1 - Displays Month to Date filter
     public static void monthToDate(){
         LocalDate today = LocalDate.now();
-
-        //LocalDate startmonth = today.withDayOfMonth(1);
 
         LocalDate firstDayOfMonth = LocalDate.of(today.getYear(), today.getMonth(), 1);
 
@@ -184,7 +188,7 @@ public class Reports {
 
     }
 
-    //case 2
+    //case 2 - Displays Previous Month filter
     public static void PreviousMonth(){
         LocalDate today = LocalDate.now();
 
@@ -199,7 +203,7 @@ public class Reports {
     }
 
 
-    //case 3
+    //case 3 - Displays Year to Date filter
     public static void yearToDate(){
         LocalDate today = LocalDate.now();
 
@@ -209,7 +213,7 @@ public class Reports {
         displayInRange(firstDayOfYear, today, "Year to Date");
     }
 
-    //case 4
+    //case 4 - Displays Previous Year filter
     public static void previousYear(){
         LocalDate today = LocalDate.now();
 
@@ -223,12 +227,3 @@ public class Reports {
 
     }
 }
-
-
-
-
-
-
-
-
-
