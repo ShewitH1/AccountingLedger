@@ -90,6 +90,21 @@ public class Reports {
 
         ArrayList<Transaction> results_arraylist = new ArrayList<>();
 
+        for(int i = 0; i<Ledger.real_arrayList.size(); i++){
+            Transaction transaction = Ledger.real_arrayList.get(i);
+            if(start_date != null){
+                if(transaction.getDate().isBefore(start_date)){
+                    //basically this will skip transaction
+                    continue;
+                }
+            }
+            if(end_date != null){
+                if (transaction.getDate().isAfter(end_date)){
+                    continue;
+                }
+            }
+
+        }
 
 
 
