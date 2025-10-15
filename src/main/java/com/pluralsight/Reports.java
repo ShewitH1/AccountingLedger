@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 public class Reports {
 
-    public static void showReportsMenu(Scanner scanner){
+    public static void showReportsMenu(){
         String ledgerMenu = """
                 ------ Reports ------
                 1) Month to Date
@@ -63,8 +63,6 @@ public class Reports {
                 //Goes back to the Ledger Screen Menu display
                 case 0:
                     System.out.println("Back to ledge page...");
-                    Ledger.showLedgerMenu(scanner);
-
                     break;
                 default:
                     System.out.println("Invalid choice. Try again.");
@@ -86,7 +84,7 @@ public class Reports {
     }
 
 
-    //Case 6 - Displays custom search filter
+    //Case 6 - Displays custom search filter - CHALLENGE YOURSELF FEATURE
     public static void customSearch(){
         LocalDate start_date = ConsoleHelper.promptForLocalDateCustomSearch("Enter the start date (or press S to skip): ");
         LocalDate end_date = ConsoleHelper.promptForLocalDateCustomSearch("Enter the end date (or press S to skip): ");
@@ -145,8 +143,6 @@ public class Reports {
         }
 
     }
-
-
 
 
     /* these methods will help get specific dates for the rest of case 1-5 methods */

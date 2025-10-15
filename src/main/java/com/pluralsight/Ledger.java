@@ -16,7 +16,7 @@ public class Ledger {
     public static ArrayList<Transaction> real_arrayList = getFromCSVFile();
 
     //ledger method
-    public static void showLedgerMenu(Scanner scanner) {
+    public static void showLedgerMenu() {
         String ledgerMenu = """
                     ------ Ledger ------
                     A) All - display all entries
@@ -64,14 +64,13 @@ public class Ledger {
                 case "R":
                 case "REPORT":
                     System.out.println("Display reports");
-
-                    Reports.showReportsMenu(scanner);
+                    Reports.showReportsMenu();
                     break;
 
                 //Goes back to the Main Menu screen
                 case "H":
                 case "HOME":
-                    System.out.println("Returning to Home...");
+                    System.out.println("Returning to Main Menu Screen...");
 
                     break;
                 default:
@@ -154,7 +153,6 @@ public class Ledger {
         else{
             System.out.printf("Number of deposits: %d | Total Deposits: $%.2f%n", count, totalDeposits);
         }
-
     }
 
 

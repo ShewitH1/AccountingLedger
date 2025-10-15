@@ -61,13 +61,21 @@ public class Transaction {
     }
 
 
+    //talk about this
     @Override
     public String toString() {
-        return date + " " + time + " | " + description + " | " + vendor + " | " + amount;
+        return String.format(
+                "%-15s | %-12s | %-25s | %-20s | %10.2f |",
+                date, time, description, vendor, amount
+        );
     }
 
+
     public String toEncodedString(){
-        return date + "|" + time + "|" + description + "|" + vendor + "|" + amount;
+        return String.format(
+                "%-15s | %-12s | %-25s | %-20s | %10.2f |",
+                date, time, description, vendor, amount
+        );
     }
 }
 

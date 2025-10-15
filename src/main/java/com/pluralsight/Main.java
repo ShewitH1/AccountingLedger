@@ -14,7 +14,7 @@ public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
-        //Starter screen for Coffee shop called "JAVA BREW"
+        //Starter screen for Coffee shop called "JAVA BREW" - CHALLENGE YOURSELF FEATURE
         System.out.println("""
             **********************************************
             *                                              *
@@ -68,12 +68,13 @@ public class Main {
                 //Displays the Ledger Home Screen
                 case "L":
                 case "LEDGER":
-                    Ledger.showLedgerMenu(scanner);
+                    Ledger.showLedgerMenu();
                     break;
 
                 //Exits - closes the program
                 case "X":
                 case "EXIT":
+                    //CHALLENGE YOURSELF FEATURE
                     System.out.println("""
                         **************************************
                         *   Thank you for using JavaBrew! ☕  *
