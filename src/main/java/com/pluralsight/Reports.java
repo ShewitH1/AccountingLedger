@@ -91,43 +91,7 @@ public class Reports {
         ArrayList<Transaction> results_arraylist = new ArrayList<>();
 
 
-        for(Transaction trans : Ledger.real_arrayList){
-            if(start_date != null){
-                if(trans.getDate().isBefore(start_date)){
-                    //Basically this will skip transaction
-                    continue;
-                }
-            }
-            if (end_date!= null){
-                if(trans.getDate().isAfter(end_date)){
-                    continue;
-                }
-            }
 
-
-            if (description != null){
-                if(!trans.getDescription().toLowerCase().contains(description.toLowerCase())){
-                    continue;
-                }
-            }
-
-
-            if (vendor != null){
-                if(!trans.getVendor().toLowerCase().contains(vendor.toLowerCase())){
-                    continue;
-                }
-            }
-
-
-            if(amount != null){
-                if(trans.getAmount() != amount){
-                    continue;
-                }
-            }
-
-
-            results_arraylist.add(trans);
-        }
 
 
         //here is a confirmation logic
