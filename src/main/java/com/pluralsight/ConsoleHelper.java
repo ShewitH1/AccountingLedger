@@ -8,9 +8,26 @@ public class ConsoleHelper {
 
     private static Scanner scanner = new Scanner(System.in);
 
-    public static String promptForString(String prompt){
-        System.out.print(prompt + ": ");
-        return scanner.nextLine();
+    public static String promptForString(String prompt) {
+        String input;
+
+        while (true) {
+            System.out.print(prompt + ": ");
+            input = scanner.nextLine().trim();
+
+            if (input.isEmpty()) {
+                System.out.println("Error: Input cannot be empty. Please enter a valid string.");
+            }
+            // checks if all characters are digits
+            else if (input.matches("\\d+")) {
+                System.out.println("Error: Input cannot be numbers. Please enter text.");
+            }
+            else {
+                break;
+            }
+        }
+
+        return input;
     }
 
     public static LocalDate promptForLocalDate(String prompt){
@@ -48,17 +65,26 @@ public class ConsoleHelper {
         }
     }
 
-    public static String promptForStringCustomSearch(String prompt){
-        System.out.println(prompt + ":");
-        String input = scanner.nextLine().trim();
+    //come back to this
+    public static String promptForStringCustomSearch(String prompt) {
+        String input = null;
 
-        if (input.isEmpty() || input.equalsIgnoreCase("S")){
+        try {
+            System.out.print(prompt + ":");
+            input = scanner.nextLine().trim();
+
+            if (input.isEmpty() || input.equalsIgnoreCase("S")) {
+                return null;
+            }
+        }
+        catch (Exception e) {
+            System.out.println("Error: Invalid input. Please try again.");
             return null;
         }
-        else{
-            return input;
-        }
+
+        return input;
     }
+
 
     public static Double promptForDoubleCustomSearch(String prompt){
         System.out.println(prompt + ":");
@@ -147,10 +173,19 @@ public class ConsoleHelper {
         return result;
     }
 
-    public static double promptForDouble(String prompt){
-        System.out.print(prompt + ": ");
-        double result = scanner.nextDouble();
-        scanner.nextLine();
+    public static double promptForDouble(String prompt) {
+        double result = 0.0;
+
+        while (true) {
+            System.out.print(prompt + ": ");
+            try {
+                result = Double.parseDouble(scanner.nextLine().trim());
+                break; // valid number, exit loop
+            } catch (NumberFormatException e) {
+                System.out.println("Error: Please enter a valid number (e.g., 12.5 or 3).");
+            }
+        }
+
         return result;
     }
 
