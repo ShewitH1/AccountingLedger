@@ -86,13 +86,13 @@ The following **additional** features are implemented:
 
 ## Application Screens
 
-### Main Dashboard
+### Main Dashboard - Add Deposit(Sale)/Payment(Purchase)/See Ledger
 ![Accounting Ledger Screenshot](images/screen.png)
 
-### Reports View
+### Reports View - See Reports based on Dates/Year(s)
 ![Accounting Ledger Screenshot](images/pic1.png)
 
-### Ledgers View
+### Ledgers View - View All Deposits/Payments/See Reports
 ![Accounting Ledger Screenshot](images/pic2.png)
 
 
