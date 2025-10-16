@@ -2,8 +2,7 @@
 
 My name is **Shewit Hailu**, and I am a student in the **Year Up** program — a national workforce development initiative that helps young adults gain professional and technical skills.
 
-This project is the **Application Development Capstone** for the **Year Up program**, completed by **Shewit Hailu**, a Year Up student currently developing skills in software engineering and application development.
-
+This project is my Application Development Capstone for the Year Up program. I am **Shewit Hailu**, a **Year Up student** currently developing my skills in software engineering and application development.
 
 ![Accounting Ledger Screenshot](images/screen.png)
 
@@ -83,6 +82,19 @@ The following **additional** features are implemented:
 **Formatting Reports:** Ensuring transactions displayed in a clear, readable table format was a challenge that required string formatting and consistent spacing.
 
 **Code Structure:** Applying object-oriented principles (classes for Transaction, Ledger, and Main) improved modularity and maintainability.
+
+
+## Application Screens
+
+### Main Dashboard
+![Accounting Ledger Screenshot](images/screen.png)
+
+### Reports View
+![Accounting Ledger Screenshot](images/pic1.png)
+
+### Ledgers View
+![Accounting Ledger Screenshot](images/pic2.png)
+
 
 ## Installation
 
