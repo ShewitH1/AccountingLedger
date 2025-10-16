@@ -171,7 +171,6 @@ public class Reports {
                 System.out.println(trans_AL.toEncodedString());
             }
         }
-
     }
 
     //case 1 - Displays Month to Date filter

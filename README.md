@@ -96,6 +96,15 @@ The following **additional** features are implemented:
 ![Accounting Ledger Screenshot](images/pic2.png)
 
 
+## Interesting Piece of Code
+1. The customSearch() method is among my project's most intriguing features. With this tool, users can go through the accounting ledger's transactions using a variety of available filters, including date range, vendor, amount, and description.
+2. This code demonstrates flexible and user-friendly filtering logic. Each search parameter is optional — users can press “S” to skip any filter.
+
+![Accounting Ledger Screenshot](images/pi2.png)
+![Accounting Ledger Screenshot](images/pi3.png)
+
+
+
 ## Installation
 
 1. Clone the repo
