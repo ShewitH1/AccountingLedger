@@ -9,7 +9,7 @@ import java.util.Scanner;
 
 public class Main {
 
-    public static ArrayList<Transaction> real_arrayList2 = Ledger.real_arrayList;
+//    public static ArrayList<Transaction> real_arrayList2 = Ledger.real_arrayList;
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);

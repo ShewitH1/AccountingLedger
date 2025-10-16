@@ -1,8 +1,14 @@
-# Accounting Ledger Capstone*
+# Accounting Ledger Capstone
+
+My name is **Shewit Hailu**, and I am a student in the **Year Up** program — a national workforce development initiative that helps young adults gain professional and technical skills.
+
+This project is the **Application Development Capstone** for the **Year Up program**, completed by **Shewit Hailu**, a Year Up student currently developing skills in software engineering and application development.
+
 
 ![Accounting Ledger Screenshot](images/screen.png)
 
 **JavaBrew Ledger** a command-line interface (CLI) accounting application developed in Java that allows users to track financial transactions for a small business — in this case, a coffee shop. The program reads and writes transactions to a transactions.csv file, displaying deposits (sales), payments (purchases), and detailed financial reports.
+
 
 Time spent: **2-4** days spent in total
 
@@ -57,15 +63,17 @@ The following **additional** features are implemented:
 
 
 
-## Video Walkthrough
+## 🎬 Video Walkthrough
 <div>
-    <a href="">
-      <p> Watch Video</p>
+    <a href="https://www.loom.com/share/0009564a5f944772b84eef622f7dd7b3">
+      <p>Videos | Library | Loom - 15 October 2025 - Watch Video</p>
     </a>
-    <a href="">
-      <img style="max-width:300px;" src="">
+    <a href="https://www.loom.com/share/0009564a5f944772b84eef622f7dd7b3">
+      <img style="max-width:300px;" src="https://cdn.loom.com/sessions/thumbnails/0009564a5f944772b84eef622f7dd7b3-0e1d31d9ca0c7306-full-play.gif">
     </a>
   </div>
+
+
 
 
 ## 📝 Notes
