@@ -89,11 +89,11 @@ The following **additional** features are implemented:
 ### Main Dashboard - Add Deposit(Sale)/Payment(Purchase)/See Ledger
 ![Accounting Ledger Screenshot](images/screen.png)
 
-### Reports View - See Reports based on Dates/Year(s)
-![Accounting Ledger Screenshot](images/pic1.png)
-
 ### Ledgers View - View All Deposits/Payments/See Reports
 ![Accounting Ledger Screenshot](images/pic2.png)
+
+### Reports View - See Reports based on Dates/Year(s)
+![Accounting Ledger Screenshot](images/pic1.png)
 
 
 ## Interesting Piece of Code
